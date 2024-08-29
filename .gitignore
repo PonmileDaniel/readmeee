@@ -1,0 +1,9 @@
+Backend/node_modules
+client/node_modules
+
+Backend/.env
+
+client/.env
+
+client/public
+client/.eslintrc.cjs
