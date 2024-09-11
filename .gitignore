@@ -8,4 +8,4 @@ client/.env
 
 client/public
 client/.eslintrc.cjs
-client
+client/
