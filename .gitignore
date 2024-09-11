@@ -3,8 +3,9 @@ client/node_modules
 client/README.md
 
 Backend/.env
-
+frontend/.env
 client/.env
 
 client/public
 client/.eslintrc.cjs
+client
