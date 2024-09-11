@@ -1,0 +1,404 @@
+/* .page-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to right, #FFE4E1, #E0F8F8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  margin-left: 2rem;
+  padding-left: 2.5rem;
+  font-size: 3rem;
+  font-weight: 600;
+  color: black;
+}
+
+.subtitle {
+  max-width: 36rem;
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  color: #64748B;
+}
+
+.file-upload-container {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.dropzone {
+  border: 2px dashed #CBD5E1;
+  border-radius: 1rem;
+  background-color: #F1F5F9;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #3B82F6;
+}
+
+.dropzone-text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #94A3B8;
+}
+
+.message, .error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #94A3B8;
+}
+
+.error {
+  color: red;
+} */
+
+
+/* General styles */
+.page-container {
+  width: 1344px;
+  min-height: 100vh;
+  background: linear-gradient(to right, #FFE4E1, #E0F8F8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: hidden;
+}
+
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 36rem;
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  color: #64748B;
+}
+
+.file-upload-container {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropzone {
+  border: 2px dashed #CBD5E1;
+  border-radius: 1rem;
+  background-color: #F1F5F9;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #3B82F6;
+}
+
+.dropzone-text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #94A3B8;
+}
+
+.file-details {
+  margin-top: 1rem;
+}
+
+.file-name {
+  font-size: 1rem;
+  color: #333;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.progress-container {
+  margin-top: 1rem;
+  width: 100%;
+  color: red;
+}
+
+.progress-bar {
+  height: 20px;
+  border-radius: 4px;
+  color: red;
+}
+
+.loader-icon {
+  margin-top: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.message, .error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.error {
+  color: red;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .dropzone {
+    padding: 1rem;
+  }
+
+  .dropzone-text {
+    font-size: 0.75rem;
+  }
+
+  .file-name {
+    font-size: 0.875rem;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .dropzone {
+    padding: 0.5rem;
+  }
+
+  .dropzone-text {
+    font-size: 0.75rem;
+  }
+
+  .file-name {
+    font-size: 0.75rem;
+  }
+
+  button {
+    padding: 6px 12px;
+  }
+}
+
+
+
+
+
+/* .pdf-uploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .pdf-uploader h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .pdf-uploader form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pdf-uploader input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .pdf-uploader button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pdf-uploader button:hover {
+    background-color: #0056b3;
+  }
+  
+  .pdf-uploader p {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .pdf-uploader {
+      padding: 10px;
+    }
+  
+    .pdf-uploader h1 {
+      font-size: 20px;
+    }
+  
+    .pdf-uploader button {
+      padding: 8px 16px;
+    }
+  } */
+  
+
+/* 
+   .page-container {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(to right, #FFE4E1, #E0F8F8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    margin-left: 2rem;
+    padding-left: 2.5rem;
+    font-size: 3rem;
+    font-weight: 600;
+    color: black;
+}
+
+.subtitle {
+    max-width: 36rem;
+    margin-top: 0.25rem;
+    font-size: 1.125rem;
+    color: #64748B;
+}
+
+.file-upload-container {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.dropzone {
+    border: 2px dashed #CBD5E1;
+    border-radius: 1rem;
+    background-color: #F1F5F9;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #3B82F6;
+}
+
+.dropzone-text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #94A3B8;
+}
+
+.message, .error {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #94A3B8;
+}
+.error {
+    color: red;
+} */
