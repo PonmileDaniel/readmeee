@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../stylingFolder/UploadDocumentPage.css';
 import { useNavigate } from 'react-router-dom';
 import { Progress } from 'reactstrap'; // Importing Progress from reactstrap
-import { Loader2 } from 'lucide-react'; // Importing Loader2 icon from lucide-react
+import { Loader2, Upload, FileText, CheckCircle, AlertCircle } from 'lucide-react'; // Importing icons from lucide-react
 import { ToastContainer, toast } from 'react-toastify'; // Importing ToastContainer and toast from react-toastify
 import 'react-toastify/dist/ReactToastify.css'; // Importing react-toastify CSS
 
@@ -12,11 +12,41 @@ function UploadDocumentPage() {
     const [message, setMessage] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
+    const [isDragOver, setIsDragOver] = useState(false);
     const navigate = useNavigate();
 
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-        setMessage('');
+        const selectedFile = event.target.files[0];
+        if (selectedFile && selectedFile.type === 'application/pdf') {
+            setFile(selectedFile);
+            setMessage('');
+        } else {
+            setMessage('Please select a valid PDF file.');
+            setFile(null);
+        }
+    };
+
+    const handleDragOver = (event) => {
+        event.preventDefault();
+        setIsDragOver(true);
+    };
+
+    const handleDragLeave = (event) => {
+        event.preventDefault();
+        setIsDragOver(false);
+    };
+
+    const handleDrop = (event) => {
+        event.preventDefault();
+        setIsDragOver(false);
+        const droppedFile = event.dataTransfer.files[0];
+        if (droppedFile && droppedFile.type === 'application/pdf') {
+            setFile(droppedFile);
+            setMessage('');
+        } else {
+            setMessage('Please drop a valid PDF file.');
+            setFile(null);
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -60,14 +90,36 @@ function UploadDocumentPage() {
 
     return (
         <div className="page-container">
-            <ToastContainer />
+            <ToastContainer 
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="content-center">
                 <div className="title-container">
+                    <div className="logo-container">
+                        <FileText className="logo-icon" size={48} />
+                    </div>
                     <h1 className="title">Upload Your PDF and Let the Magic Begin!</h1>
+                    <p className="subtitle">Transform your documents into interactive AI conversations</p>
                 </div>
+                
                 <div className="file-upload-container">
                     <form onSubmit={handleSubmit}>
-                        <div className="dropzone" onClick={() => document.getElementById('fileInput').click()}>
+                        <div 
+                            className={`dropzone ${isDragOver ? 'drag-over' : ''} ${file ? 'has-file' : ''}`}
+                            onClick={() => document.getElementById('fileInput').click()}
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}
+                        >
                             <input
                                 id="fileInput"
                                 type="file"
@@ -75,30 +127,85 @@ function UploadDocumentPage() {
                                 onChange={handleFileChange}
                                 style={{ display: 'none' }}
                             />
-                            <div className="icon">📄</div>
-                            <p className="dropzone-text">Drop PDF Here...</p>
+                            
+                            {!file ? (
+                                <>
+                                    <div className="upload-icon-container">
+                                        <Upload className="upload-icon" size={48} />
+                                    </div>
+                                    <h3 className="dropzone-title">Drop your PDF here</h3>
+                                    <p className="dropzone-text">or click to browse files</p>
+                                    <p className="file-limit">Maximum file size: 1MB</p>
+                                </>
+                            ) : (
+                                <div className="file-preview">
+                                    <div className="file-icon-container">
+                                        <FileText className="file-icon" size={32} />
+                                    </div>
+                                    <div className="file-info">
+                                        <p className="file-name">{file.name}</p>
+                                        <p className="file-size">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                    </div>
+                                    <CheckCircle className="success-icon" size={24} />
+                                </div>
+                            )}
                         </div>
+                        
                         {file && (
-                            <div className="file-details">
-                                <p className="file-name">{file.name}</p>
-                            </div>
+                            <button 
+                                type="submit" 
+                                className={`upload-btn ${isUploading ? 'uploading' : ''}`}
+                                disabled={isUploading}
+                            >
+                                {isUploading ? (
+                                    <>
+                                        <Loader2 className="btn-icon spinning" size={20} />
+                                        Processing...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Upload className="btn-icon" size={20} />
+                                        Upload & Process PDF
+                                    </>
+                                )}
+                            </button>
                         )}
-                        <button type="submit">Upload</button>
                     </form>
+                    
                     {isUploading && (
                         <div className="progress-container">
-                            <Progress value={uploadProgress} className="progress-bar">
-                                {`${uploadProgress}%`}
-                            </Progress>
+                            <div className="progress-header">
+                                <span className="progress-text">
+                                    {uploadProgress < 100 ? 'Uploading...' : 'Processing document...'}
+                                </span>
+                                <span className="progress-percentage">{uploadProgress}%</span>
+                            </div>
+                            <div className="progress-wrapper">
+                                <Progress 
+                                    value={uploadProgress} 
+                                    className="modern-progress-bar"
+                                    color="primary"
+                                />
+                            </div>
                             {uploadProgress === 100 && (
                                 <div className="redirecting">
-                                    <Loader2 className="loader-icon" />
-                                    Redirecting...
+                                    <Loader2 className="loader-icon spinning" size={20} />
+                                    <span>Redirecting to chat...</span>
                                 </div>
                             )}
                         </div>
                     )}
-                    {message && <p className={message.includes('Error') ? 'error' : 'message'}>{message}</p>}
+                    
+                    {message && (
+                        <div className={`message-container ${message.includes('Error') || message.includes('Please') ? 'error' : 'success'}`}>
+                            {message.includes('Error') || message.includes('Please') ? (
+                                <AlertCircle className="message-icon" size={20} />
+                            ) : (
+                                <CheckCircle className="message-icon" size={20} />
+                            )}
+                            <p className="message-text">{message}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

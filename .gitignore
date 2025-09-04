@@ -9,3 +9,213 @@ client/.env
 client/public
 client/.eslintrc.cjs
 client/
+
+# Dependencies
+node_modules/
+*/node_modules/
+Backend/node_modules/
+frontend/node_modules/
+client/node_modules/
+
+# Production builds
+/build
+/dist
+Backend/build/
+frontend/build/
+frontend/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+Backend/.env
+frontend/.env
+client/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Uploaded files (if you don't want to track uploaded PDFs)
+uploads/
+Backend/uploads/
+*/uploads/
+
+# Package lock files (choose one based on your preference)
+# Uncomment the one you want to ignore
+# package-lock.json
+# yarn.lock
+
+# Local development files
+.local
+
+# Webpack
+.webpack/
+
+# Electron
+/electron/dist/
+
+# Prettier
+.prettierignore
+
+# ESLint
+.eslintrc.cjs
+client/.eslintrc.cjs
+
+# Vite
+.vite/
+
+# Testing
+/coverage
+*.coverage
+
+# Database files (if you have any local db files)
+*.sqlite
+*.db
+
+# Certificate files
+*.pem
+*.key
+*.crt
+
+# Backup files
+*.backup
+*.bak
+
+# Archive files
+*.tar
+*.zip
+*.rar
+*.7z
+
+# Python (if you have any Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Java (if you have any Java files)
+*.class
+*.jar
+*.war
+*.ear
+
+# System files
+*.tmp
+*.temp
+
+# Lock files for different package managers
+.pnpm-lock.yaml
+bun.lockb
+
+# IDE specific files
+*.sublime-project
+*.sublime-workspace
+
+# Windows specific
+*.lnk
+
+# Linux specific
+*~
+
+# macOS specific
+.AppleDouble
+.LSOverride
+Icon
+
+# Directories for local development
+.history/
+.vscode-test/
+
+
+# Misc
+*.orig
+*.rej
+.sass-cache/
+connect.lock
+typings/
+.tgz
