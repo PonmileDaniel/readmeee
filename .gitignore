@@ -1,10 +1,15 @@
 Backend/node_modules
+frontend/node_modules
 client/node_modules
 client/README.md
 
 Backend/.env
 frontend/.env
 client/.env
+
+# Build outputs
+frontend/dist/
+client/dist/
 
 client/public
 client/.eslintrc.cjs
