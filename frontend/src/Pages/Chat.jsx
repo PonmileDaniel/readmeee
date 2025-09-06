@@ -26,12 +26,12 @@ function Chat() {
       //   pdfUniqueId: documentId
       // });
 
-      // const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/pdf/search-pdf`, {
-      //   userMessage: currentMessage,
-      //   pdfUniqueId: documentId
-      // });
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/pdf/search-pdf`, {
+        userMessage: currentMessage,
+        pdfUniqueId: documentId
+      });
 
-      console.log("Response received:", response.data);
+      //console.log("Response received:", response.data);
 
       // Fix: Use the correct property name from backend response
       const botMessage = { 

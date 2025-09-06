@@ -72,7 +72,7 @@ function UploadDocumentPage() {
             });
 
             if (response.status === 200) {
-                console.log("doc it is", response.data);
+                //console.log("doc it is", response.data);
                 sessionStorage.setItem("documentId", JSON.stringify(response.data.documentUniqueId));
                 navigate("/chat");
             }
